@@ -17,14 +17,15 @@ Amplify.configure({
 
 export const handler: Handler = async (event, context) => {
   const requestBody = await JSON.parse(event.body);
-  const restOperation = post({
-    apiName: 'chatMessages',
-    path: API_URL,
-    options: {
-      body: requestBody,
-    },
-  });
-	const { body } = await restOperation.response;
-  const response = await body.json();
-	return response
+  try {
+    const { body } = await fetch(API_URL ,{
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+    });
+    const response = await body.json();
+    return response
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to send message');
+  }
 };
