@@ -22,8 +22,8 @@ export const handler: Handler = async (event, context) => {
       method: 'POST',
       body: JSON.stringify(requestBody),
     });
-    const response = await body.json();
-    return response
+    
+    return body
   } catch (error) {
     console.error(error);
     throw new Error('Failed to send message');
