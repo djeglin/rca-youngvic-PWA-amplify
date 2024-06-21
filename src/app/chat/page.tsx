@@ -80,14 +80,13 @@ export default function Chat() {
         fromUser: true,
       };
       const messageResponse = await fetchMessages(concatedMessageData);
-      console.log({ messageResponse });
-      // const botMessage = {
-      //   ...bot,
-      //   timestamp: new Date().toISOString(),
-      //   text: messageResponse,
-      //   fromUser: false,
-      // };
-      // setMessages((prevMessages) => [...prevMessages, botMessage]);
+      const botMessage = {
+        ...bot,
+        timestamp: new Date().toISOString(),
+        text: messageResponse,
+        fromUser: false,
+      };
+      setMessages((prevMessages) => [...prevMessages, botMessage]);
       setPendingMessages([]);
     }
     setIsFetching(false);

@@ -10,10 +10,12 @@ export default function Home() {
   useEffect(() => {
     setUserId(Cookies.get('user_id'));
   }, []);
-
-  if (userId) {
-    router.push('/chat');
-  } else {
-    router.push('/sign-up');
-  }
+  useEffect(() => {
+    if (userId) {
+      router.push('/dashboard');
+    } else {
+      router.push('/sign-up');
+    }
+  }, [userId, router])
+  
 }
